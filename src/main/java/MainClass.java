@@ -1,15 +1,11 @@
 import java.util.List;
+import java.util.Timer;
 
 public class MainClass {
 
     public static void main(String[] args) {
-        RecipeService myclass = new RecipeService();
-        myclass.invokeBrowser();
-        List<Recipe> listOfRecipes = myclass.getRecipes(7);
-        for (Recipe recipe : listOfRecipes) {
-            System.out.println(recipe.getName());
-            System.out.println(recipe.getLink());
-            System.out.println(recipe.getImageLink());
-        }
+        Timer timer = new Timer();
+
+        timer.scheduleAtFixedRate( new RetrieveWriteTask(), 0,60000);
     }
 }
