@@ -1,5 +1,7 @@
 package app;
 
+import com.google.gson.Gson;
+import com.mongodb.Block;
 import com.mongodb.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
@@ -24,10 +26,10 @@ public class RecipeDAL {
     private RecipeDAL(){
         MongoClient mongoClient = new MongoClient();
         MongoDatabase database = mongoClient.getDatabase("recipes");
-        recipesCollection =  database.getCollection("recipes");
-        recipesCollection.drop();
-        database.createCollection("recipes",
-                new CreateCollectionOptions().capped(true).sizeInBytes(0x100000));
+       // recipesCollection =  database.getCollection("recipes");
+       // recipesCollection.drop();
+       // database.createCollection("recipes",
+       //         new CreateCollectionOptions().capped(true).sizeInBytes(0x100000));
         recipesCollection =  database.getCollection("recipes");
     }
 
@@ -40,5 +42,22 @@ public class RecipeDAL {
             listOfDocs.add(document);
         }
         recipesCollection.insertMany(listOfDocs);
+    }
+
+    public List<Recipe> getRecipes(){
+        List<Recipe> list = new ArrayList<>();
+        Block<Document> converterBlock = new Block<Document>() {
+            @Override
+            public void apply(final Document document) {
+                Gson gson = new Gson();
+                Recipe recipe = gson.fromJson(document.toJson(),Recipe.class);
+                list.add(recipe);
+            }
+        };
+        recipesCollection.find().forEach(converterBlock);
+//        for (Recipe recipe:list){
+//            System.out.println(recipe.getName());
+//        }
+        return list;
     }
 }

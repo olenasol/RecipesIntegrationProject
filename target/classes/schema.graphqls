@@ -1,0 +1,7 @@
+type Query{recipes: [Recipe]}
+
+type Recipe {
+    name : String
+    link: String
+    imageLink: String
+}

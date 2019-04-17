@@ -1,9 +1,15 @@
 package app;
 
+import com.google.gson.annotations.SerializedName;
+
 public class Recipe {
 
+
     private String name;
+
+    @SerializedName("detailsLink")
     private String link;
+
     private String imageLink;
 
     public String getName() {

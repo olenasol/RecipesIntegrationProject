@@ -22,7 +22,7 @@ public class RecipeService {
         driver.manage().timeouts().pageLoadTimeout(40, TimeUnit.SECONDS);
     }
     public List<Recipe> getRecipes(int pageId) {
-        List<Recipe> listOfRecipes = new ArrayList<>();
+        List<Recipe> listOfRecipes = new ArrayList<Recipe>();
         driver.get("https://www.smachno.in.ua/index.php?page=" + pageId);
         System.out.println(driver.getTitle());
 
