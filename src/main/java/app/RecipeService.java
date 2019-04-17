@@ -1,3 +1,5 @@
+package app;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -20,7 +22,7 @@ public class RecipeService {
         driver.manage().timeouts().pageLoadTimeout(40, TimeUnit.SECONDS);
     }
     public List<Recipe> getRecipes(int pageId) {
-        List<Recipe> listOfRecipes = new ArrayList<Recipe>();
+        List<Recipe> listOfRecipes = new ArrayList<>();
         driver.get("https://www.smachno.in.ua/index.php?page=" + pageId);
         System.out.println(driver.getTitle());
 
