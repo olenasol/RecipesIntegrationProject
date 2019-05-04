@@ -1,7 +1,6 @@
 type Query{recipes: [Recipe]}
-
 type Recipe {
-    name : String
+    name: String
     link: String
     imageLink: String
 }

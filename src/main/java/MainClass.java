@@ -1,12 +1,9 @@
 import app.GraphQLDataFetchers;
-import app.Recipe;
-import app.RecipeDAL;
 import com.google.common.base.Charsets;
 import com.google.common.io.Resources;
 import graphql.ExecutionResult;
 import graphql.GraphQL;
 import graphql.schema.GraphQLSchema;
-import graphql.schema.StaticDataFetcher;
 import graphql.schema.idl.RuntimeWiring;
 import graphql.schema.idl.SchemaGenerator;
 import graphql.schema.idl.SchemaParser;
@@ -14,8 +11,6 @@ import graphql.schema.idl.TypeDefinitionRegistry;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.List;
-import java.util.Timer;
 
 import static graphql.schema.idl.RuntimeWiring.newRuntimeWiring;
 import static graphql.schema.idl.TypeRuntimeWiring.newTypeWiring;
@@ -27,7 +22,7 @@ public class MainClass {
         URL url = Resources.getResource("schema.graphqls");
         String sdl = "";
         try {
-             sdl = Resources.toString(url, Charsets.UTF_8);
+            sdl = Resources.toString(url, Charsets.UTF_8);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -53,7 +48,6 @@ public class MainClass {
 //            System.out.println(recipe.getImageLink());
 //        }
 
-        // Prints: {hello=world}
     }
 
     private static GraphQLSchema buildSchema(String sdl) {

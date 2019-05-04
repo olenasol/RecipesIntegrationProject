@@ -26,10 +26,10 @@ public class RecipeDAL {
     private RecipeDAL(){
         MongoClient mongoClient = new MongoClient();
         MongoDatabase database = mongoClient.getDatabase("recipes");
-       // recipesCollection =  database.getCollection("recipes");
-       // recipesCollection.drop();
-       // database.createCollection("recipes",
-       //         new CreateCollectionOptions().capped(true).sizeInBytes(0x100000));
+        recipesCollection =  database.getCollection("recipes");
+        recipesCollection.drop();
+        database.createCollection("recipes",
+                new CreateCollectionOptions().capped(true).sizeInBytes(0x100000));
         recipesCollection =  database.getCollection("recipes");
     }
 
