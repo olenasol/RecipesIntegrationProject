@@ -1,5 +1,3 @@
-package app;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -10,12 +8,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-public class RecipeService {
+class RecipeService {
 
     private WebDriver driver;
 
-    public void invokeBrowser(){
-        System.setProperty("webdriver.chrome.driver","C:\\Users\\olena\\Documents\\chromedriver.exe");
+    void invokeBrowser(){
+        System.setProperty("webdriver.chrome.driver","C:\\Users\\olena\\chromedriver.exe");
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--headless");
         driver = new ChromeDriver(options);
@@ -25,8 +23,8 @@ public class RecipeService {
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         driver.manage().timeouts().pageLoadTimeout(40, TimeUnit.SECONDS);
     }
-    public List<Recipe> getRecipes(int pageId) {
-        List<Recipe> listOfRecipes = new ArrayList<Recipe>();
+    List<Recipe> getRecipes(int pageId) {
+        List<Recipe> listOfRecipes = new ArrayList<>();
         driver.get("https://www.smachno.in.ua/index.php?page=" + pageId);
         System.out.println(driver.getTitle());
 

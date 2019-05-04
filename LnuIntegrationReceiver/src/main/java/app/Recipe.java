@@ -1,6 +1,8 @@
 package app;
 
 import com.google.gson.annotations.SerializedName;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class Recipe {
 
@@ -34,5 +36,17 @@ public class Recipe {
 
     public void setImageLink(String imageLink) {
         this.imageLink = imageLink;
+    }
+
+    public static Recipe decodeFromJSON(JSONObject jsonObject) {
+        Recipe recipe = new Recipe();
+        try {
+            recipe.name = jsonObject.getString("name");
+            recipe.link = jsonObject.getString("link");
+            recipe.imageLink = jsonObject.getString("imageLink");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return recipe;
     }
 }
