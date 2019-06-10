@@ -38,7 +38,8 @@ public class RecipeDAL {
         for (Recipe recipe:listOfRecipes){
             Document document = new Document("name",recipe.getName())
                     .append("imageLink",recipe.getImageLink())
-                    .append("detailsLink",recipe.getLink());
+                    .append("detailsLink",recipe.getLink())
+                    .append("numberOfLikes",recipe.getNumberOfLikes());
             listOfDocs.add(document);
         }
         recipesCollection.insertMany(listOfDocs);

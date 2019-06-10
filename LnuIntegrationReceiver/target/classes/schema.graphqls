@@ -3,4 +3,5 @@ type Recipe {
     name: String
     link: String
     imageLink: String
+    numberOfLikes: Int
 }

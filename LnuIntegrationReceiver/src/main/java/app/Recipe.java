@@ -14,6 +14,8 @@ public class Recipe {
 
     private String imageLink;
 
+    private int numberOfLikes;
+
     public String getName() {
         return name;
     }
@@ -36,6 +38,14 @@ public class Recipe {
 
     public void setImageLink(String imageLink) {
         this.imageLink = imageLink;
+    }
+
+    public int getNumberOfLikes() {
+        return numberOfLikes;
+    }
+
+    public void setNumberOfLikes(int numberOfLikes) {
+        this.numberOfLikes = numberOfLikes;
     }
 
     public static Recipe decodeFromJSON(JSONObject jsonObject) {
