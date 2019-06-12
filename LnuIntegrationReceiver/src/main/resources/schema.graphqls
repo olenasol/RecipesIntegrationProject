@@ -1,4 +1,5 @@
 type Query{recipes: [Recipe]}
+type Mutation{likeRecipe(detailsLink: String):Int}
 type Recipe {
     name: String
     link: String

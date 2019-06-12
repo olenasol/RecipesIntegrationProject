@@ -6,10 +6,16 @@ import com.mongodb.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.CreateCollectionOptions;
+import com.mongodb.client.result.UpdateResult;
 import org.bson.Document;
+import org.bson.types.ObjectId;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.mongodb.client.model.Filters.eq;
+import static com.mongodb.client.model.Filters.lt;
+import static com.mongodb.client.model.Updates.inc;
 
 public class RecipeDAL {
 
@@ -45,6 +51,11 @@ public class RecipeDAL {
         recipesCollection.insertMany(listOfDocs);
     }
 
+    public  int addLike(String recipeLink){
+        UpdateResult updateResult = recipesCollection.updateMany(eq("detailsLink", recipeLink), inc("numberOfLikes", 1));
+        return (int)(updateResult.getModifiedCount());
+    }
+
     public List<Recipe> getRecipes(){
         List<Recipe> list = new ArrayList<>();
         Block<Document> converterBlock = new Block<Document>() {
@@ -56,9 +67,7 @@ public class RecipeDAL {
             }
         };
         recipesCollection.find().forEach(converterBlock);
-//        for (Recipe recipe:list){
-//            System.out.println(recipe.getName());
-//        }
+        addLike("https://www.smachno.in.ua/prygotuvannya.php?id=352");
         return list;
     }
 }

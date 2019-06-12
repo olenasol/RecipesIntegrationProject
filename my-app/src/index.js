@@ -6,31 +6,13 @@ import ApolloClient from "apollo-boost";
 import { gql } from "apollo-boost";
 import { ApolloProvider } from "react-apollo";
 import { Query } from "react-apollo";
+import { Mutation } from "react-apollo";
 
 const client = new ApolloClient({
-  uri: "https://4d4e1168.ngrok.io/graphql"
+  uri: " http://5e8c0865.ngrok.io/graphql"
 });
 
-client
-  .query({
-    query: gql`
-      {
-         recipes{
-         	name,
-         	link,
-         	imageLink
-         }
-       }
-    `
-  }, {
-  options: { 
-    context: { 
-      headers: { 
-       	'Access-Control-Allow-Origin': '*',
-       	'Access-Control-Allow-Headers': 'Content-Type, Authorization, Content-Length, X-Requested-With'
-      } 
-    }}})
-  .then(result => console.log(result));
+
 
 const RecipesList = () => (
   <Query

@@ -45,8 +45,10 @@ public class GraphQLProvider {
 
     private GraphQLSchema buildSchema(String sdl) {
         TypeDefinitionRegistry typeRegistry = new SchemaParser().parse(sdl);
+
         RuntimeWiring runtimeWiring = buildWiring();
         SchemaGenerator schemaGenerator = new SchemaGenerator();
+
         return schemaGenerator.makeExecutableSchema(typeRegistry, runtimeWiring);
     }
 

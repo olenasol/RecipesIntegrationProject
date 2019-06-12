@@ -1,6 +1,8 @@
 package app;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.google.gson.annotations.SerializedName;
+import org.bson.types.ObjectId;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -15,6 +17,16 @@ public class Recipe {
     private String imageLink;
 
     private int numberOfLikes;
+    @JsonIgnore
+    private ObjectId _id;
+
+    public ObjectId get_id() {
+        return _id;
+    }
+
+    public void set_id(ObjectId _id) {
+        this._id = _id;
+    }
 
     public String getName() {
         return name;

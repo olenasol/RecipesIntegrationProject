@@ -67,7 +67,7 @@ public class Application {
 //    RedissonClient redisson() throws IOException {
 //        Config config = new Config();
 //        config.useClusterServers()
-//                .addNodeAddress("redis://127.0.0.1:6379");
+//                .addNodeAddress("127.0.0.1:6379");
 //        return Redisson.create(config);
 //    }
 //    @Bean
@@ -87,9 +87,8 @@ public class Application {
                 list.add(Recipe.decodeFromJSON(obj));
                 RecipeDAL dal = RecipeDAL.newInstance();
                 dal.insertRecipes(list);
-                System.out.println("Written to db ");
             }
-
+            System.out.println("Written to db ");
         } catch (JSONException e) {
             e.printStackTrace();
         }
